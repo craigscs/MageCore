@@ -22,7 +22,7 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
      * 
      * @var string
      */
-    protected $_idFieldName = 'post_id';
+    protected $_idFieldName = 'profile_id';
 
     /**
      * Event prefix
@@ -60,13 +60,19 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
         $countSelect->reset(\Zend_Db_Select::GROUP);
         return $countSelect;
     }
+
+    public function addStoreFilter($storeIds)
+    {
+        $this->getSelect()->where('main_table.store_id IN (?)', array(0, $storeIds));
+        return $this;
+    }
     /**
      * @param string $valueField
      * @param string $labelField
      * @param array $additional
      * @return array
      */
-    protected function _toOptionArray($valueField = 'post_id', $labelField = 'name', $additional = [])
+    protected function _toOptionArray($valueField = 'profile_id', $labelField = 'name', $additional = [])
     {
         return parent::_toOptionArray($valueField, $labelField, $additional);
     }

@@ -34,7 +34,7 @@ class Delete extends \Mageplaza\HelloWorld\Controller\Adminhtml\Post
                 $post->load($id);
                 $name = $post->getName();
                 $post->delete();
-                $this->messageManager->addSuccess(__('The Post has been deleted.'));
+                $this->messageManager->addSuccess(__('The Profile has been deleted.'));
                 $this->_eventManager->dispatch(
                     'adminhtml_mageplaza_helloworld_post_on_delete',
                     ['name' => $name, 'status' => 'success']

@@ -77,7 +77,7 @@ class Index extends \Magento\Backend\App\Action
     {
         $resultPage = $this->getResultPage();
         //$resultPage->setActiveMenu('Mageplaza_HelloWorld::post');
-        $resultPage->getConfig()->getTitle()->prepend((__('Posts')));
+        $resultPage->getConfig()->getTitle()->prepend((__('Profiles')));
         return $this;
     }
 }

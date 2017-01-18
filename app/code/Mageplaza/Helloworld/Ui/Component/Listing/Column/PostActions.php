@@ -70,13 +70,13 @@ class PostActions extends \Magento\Ui\Component\Listing\Columns\Column
     {
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as & $item) {
-                if (isset($item['post_id'])) {
+                if (isset($item['profile_id'])) {
                     $item[$this->getData('name')] = [
                         'edit' => [
                             'href' => $this->_urlBuilder->getUrl(
                                 static::URL_PATH_EDIT,
                                 [
-                                    'post_id' => $item['post_id']
+                                    'post_id' => $item['profile_id']
                                 ]
                             ),
                             'label' => __('Edit')
@@ -85,13 +85,13 @@ class PostActions extends \Magento\Ui\Component\Listing\Columns\Column
                             'href' => $this->_urlBuilder->getUrl(
                                 static::URL_PATH_DELETE,
                                 [
-                                    'post_id' => $item['post_id']
+                                    'post_id' => $item['profile_id']
                                 ]
                             ),
                             'label' => __('Delete'),
                             'confirm' => [
                                 'title' => __('Delete "${ $.$data.name }"'),
-                                'message' => __('Are you sure you wan\'t to delete the Post "${ $.$data.name }" ?')
+                                'message' => __('Are you sure you wan\'t to delete the profile "${ $.$data.name }" ?')
                             ]
                         ]
                     ];

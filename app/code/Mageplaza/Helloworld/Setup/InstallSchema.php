@@ -29,12 +29,13 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
     {
         $installer = $setup;
         $installer->startSetup();
-        if (!$installer->tableExists('mageplaza_helloworld_post')) {
+
+        if (!$installer->tableExists('integrationui_profile')) {
             $table = $installer->getConnection()->newTable(
-                $installer->getTable('mageplaza_helloworld_post')
+                $installer->getTable('integrationui_profile')
             )
             ->addColumn(
-                'post_id',
+                'profile_id',
                 \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
                 null,
                 [
@@ -50,93 +51,127 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 255,
                 ['nullable => false'],
-                'Post Name'
+                'Name'
             )
             ->addColumn(
-                'url_key',
+                'process',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 255,
                 [],
-                'Post URL Key'
+                'Process'
             )
             ->addColumn(
-                'post_content',
+                'file_info',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 '64k',
                 [],
-                'Post Post Content'
+                'File Info'
             )
             ->addColumn(
-                'tags',
+                'curl_info',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-                255,
+                '64k',
                 [],
-                'Post Tags'
+                'Curl Info'
+            )
+            ->addColumn(
+                'approach',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                '64k',
+                [],
+                'Approach'
+            )
+            ->addColumn(
+                'event',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                '64k',
+                [],
+                'Event'
             )
             ->addColumn(
                 'status',
                 \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
-                1,
+                '64k',
                 [],
-                'Post Status'
+                'Status'
             )
             ->addColumn(
-                'featured_image',
-                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-                255,
+                'status_after',
+                \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+                '64k',
                 [],
-                'Post Featured Image'
+                'Status After'
             )
             ->addColumn(
-                'sample_country_selection',
-                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-                3,
-                [],
-                'Post Sample Country Selection'
-            )
-            ->addColumn(
-                'sample_upload_file',
-                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-                255,
-                [],
-                'Post Sample File'
-            )
-            ->addColumn(
-                'sample_multiselect',
+                'Default Values',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 '64k',
                 [],
-                'Post Sample Multiselect'
-            )
-
-            ->addColumn(
-                'created_at',
-                \Magento\Framework\DB\Ddl\Table::TYPE_TIMESTAMP,
-                null,
-                [],
-                'Post Created At'
+                'Default Values'
             )
             ->addColumn(
-                'updated_at',
-                \Magento\Framework\DB\Ddl\Table::TYPE_TIMESTAMP,
-                null,
+                'field_mapping',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                '64k',
                 [],
-                'Post Updated At'
+                'Field Mapping'
             )
-            ->setComment('Post Table');
+            ->addColumn(
+                'update_mapping',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                '64k',
+                [],
+                'Update Mapping'
+            )
+            ->addColumn(
+                'prefix',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                '64k',
+                [],
+                'Prefix'
+            )
+            ->addColumn(
+                'soap_info',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                '64k',
+                [],
+                'Soap Info'
+            )
+            ->setComment('Integration UI Profile');
             $installer->getConnection()->createTable($table);
-
-            $installer->getConnection()->addIndex(
-                $installer->getTable('mageplaza_helloworld_post'),
-                $setup->getIdxName(
-                    $installer->getTable('mageplaza_helloworld_post'),
-                    ['name','url_key','post_content','tags','featured_image','sample_upload_file'],
-                    \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_FULLTEXT
-                ),
-                ['name','url_key','post_content','tags','featured_image','sample_upload_file'],
-                \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_FULLTEXT
-            );
         }
+
+//        $installer->addAttribute('catalog_category', 'code', array(
+//            'type'          => 'varchar',
+//            'label'         => 'Code',
+//            'required'      => true,
+//            'unique'        => true,
+//            'sort_order'    => 0,
+//            'global'        => 0,
+//            'group'         => 'General Information'
+//        ));
+//
+//        $table = $installer->getConnection()
+//            ->newTable($installer->getTable('integrationui_order_status'))
+//            ->addColumn('order_id', \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER, null, array(
+//                'identity'  => true,
+//                'unsigned'  => true,
+//                'nullable'  => false,
+//                'primary'   => true,
+//            ), 'Order Id')
+//            ->addColumn('integration_status', \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,, null, array(), 'Integration Status')
+//            ->addForeignKey(
+//                $installer->getFkName(
+//                    'integrationui_order_status',
+//                    'order_id',
+//                    'sales/order',
+//                    'entity_id'),
+//                'order_id', $installer->getTable('sales_order'), 'entity_id',
+//                \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE, \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE)
+//            ->setComment('Integration Order Status');
+//
+//        $installer->getConnection()->createTable($table);
+
         $installer->endSetup();
     }
 }

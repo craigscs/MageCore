@@ -29,12 +29,6 @@
                     <argument name="block" xsi:type="string">mageplaza_helloworld_post_edit_tab_post</argument>
                 </action>
             </block>
-            <field id="attribute_set_mapping" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
-                <label>Attribute Set Mapping</label>
-                <frontend_model>Mageplaza\HellWorld\Block\Adminhtml\System\Form\Field\Curllist</frontend_model>
-                <backend_model>Vaimo\IntegrationUI\Model\Adminhtml\System\Config\SitesSerialize</backend_model>
-                <config_path>vaimo/integrationui/attributeset</config_path>
-            </field>
         </referenceContainer>
     </body>
 </page>

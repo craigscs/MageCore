@@ -86,11 +86,11 @@ class Edit extends \Mageplaza\HelloWorld\Controller\Adminhtml\Post
         /** @var \Magento\Backend\Model\View\Result\Page|\Magento\Framework\View\Result\Page $resultPage */
         $resultPage = $this->_resultPageFactory->create();
         $resultPage->setActiveMenu('Mageplaza_HelloWorld::post');
-        $resultPage->getConfig()->getTitle()->set(__('Posts'));
+        $resultPage->getConfig()->getTitle()->set(__('Profiles'));
         if ($id) {
             $post->load($id);
             if (!$post->getId()) {
-                $this->messageManager->addError(__('This Post no longer exists.'));
+                $this->messageManager->addError(__('This Profile no longer exists.'));
                 $resultRedirect = $this->_resultRedirectFactory->create();
                 $resultRedirect->setPath(
                     'mageplaza_helloworld/*/edit',
@@ -102,7 +102,7 @@ class Edit extends \Mageplaza\HelloWorld\Controller\Adminhtml\Post
                 return $resultRedirect;
             }
         }
-        $title = $post->getId() ? $post->getName() : __('New Post');
+        $title = $post->getId() ? $post->getName() : __('New Profile');
         $resultPage->getConfig()->getTitle()->prepend($title);
         $data = $this->_backendSession->getData('mageplaza_helloworld_post_data', true);
         if (!empty($data)) {

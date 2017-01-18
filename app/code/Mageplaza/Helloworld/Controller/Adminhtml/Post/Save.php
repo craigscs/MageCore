@@ -83,15 +83,12 @@ class Save extends \Mageplaza\HelloWorld\Controller\Adminhtml\Post
     public function execute()
     {
         $data = $this->getRequest()->getPost('post');
+        var_dump($data); die();
         $resultRedirect = $this->resultRedirectFactory->create();
         if ($data) {
             $data = $this->_filterData($data);
             $post = $this->_initPost();
             $post->setData($data);
-            $featuredImage = $this->_uploadModel->uploadFileAndGetName('featured_image', $this->_imageModel->getBaseDir(), $data);
-            $post->setFeaturedImage($featuredImage);
-            $sampleUploadFile = $this->_uploadModel->uploadFileAndGetName('sample_upload_file', $this->_fileModel->getBaseDir(), $data);
-            $post->setSampleUploadFile($sampleUploadFile);
             $this->_eventManager->dispatch(
                 'mageplaza_helloworld_post_prepare_save',
                 [

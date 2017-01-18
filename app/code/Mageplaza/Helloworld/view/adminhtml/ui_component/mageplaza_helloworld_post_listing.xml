@@ -35,8 +35,8 @@
         <argument name="dataProvider" xsi:type="configurableObject">
             <argument name="class" xsi:type="string">MageplazaHelloWorldPostGridDataProvider</argument>
             <argument name="name" xsi:type="string">mageplaza_helloworld_post_listing_data_source</argument>
-            <argument name="primaryFieldName" xsi:type="string">post_id</argument>
-            <argument name="requestFieldName" xsi:type="string">post_id</argument>
+            <argument name="primaryFieldName" xsi:type="string">profile_id</argument>
+            <argument name="requestFieldName" xsi:type="string">profile_id</argument>
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="update_url" xsi:type="url" path="mui/index/render"/>
@@ -106,7 +106,7 @@
         <!--</filters>-->
     </container>
     <columns name="mageplaza_helloworld_post_columns">
-        <column name="post_id">
+        <column name="profile_id">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">textRange</item>
@@ -154,7 +154,7 @@
                 <item name="config" xsi:type="array">
                     <item name="resizeEnabled" xsi:type="boolean">false</item>
                     <item name="resizeDefaultWidth" xsi:type="string">107</item>
-                    <item name="indexField" xsi:type="string">post_id</item>
+                    <item name="indexField" xsi:type="string">profile_id</item>
                 </item>
             </argument>
         </actionsColumn>

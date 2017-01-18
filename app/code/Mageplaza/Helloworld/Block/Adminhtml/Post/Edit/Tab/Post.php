@@ -103,7 +103,7 @@ class Post extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
     protected function _prepareForm()
     {
         /** @var \Mageplaza\HelloWorld\Model\Post $post */
-        $post = $this->_coreRegistry->registry('mageplaza_helloworld_post');
+        $post = $this->_coreRegistry->registry('integrationui_profile');
         $form = $this->_formFactory->create();
         $form->setHtmlIdPrefix('post_');
         $form->setFieldNameSuffix('post');

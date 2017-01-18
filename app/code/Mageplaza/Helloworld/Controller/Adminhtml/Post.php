@@ -72,7 +72,7 @@ abstract class Post extends \Magento\Backend\App\Action
         if ($postId) {
             $post->load($postId);
         }
-        $this->_coreRegistry->register('mageplaza_helloworld_post', $post);
+        $this->_coreRegistry->register('integrationui_profile', $post);
         return $post;
     }
 }

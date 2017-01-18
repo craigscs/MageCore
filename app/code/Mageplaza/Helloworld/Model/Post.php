@@ -41,33 +41,9 @@ namespace Mageplaza\HelloWorld\Model;
  */
 class Post extends \Magento\Framework\Model\AbstractModel
 {
-    /**
-     * Cache tag
-     * 
-     * @var string
-     */
-    const CACHE_TAG = 'mageplaza_helloworld_post';
+    const DEFAULT_EXPORT_PATH = 'var/export';
+    const DEFAULT_EXPORT_FILENAME = 'export_';
 
-    /**
-     * Cache tag
-     * 
-     * @var string
-     */
-    protected $_cacheTag = 'mageplaza_helloworld_post';
-
-    /**
-     * Event prefix
-     * 
-     * @var string
-     */
-    protected $_eventPrefix = 'mageplaza_helloworld_post';
-
-
-    /**
-     * Initialize resource model
-     *
-     * @return void
-     */
     protected function _construct()
     {
         $this->_init('Mageplaza\HelloWorld\Model\ResourceModel\Post');
@@ -80,7 +56,7 @@ class Post extends \Magento\Framework\Model\AbstractModel
      */
     public function getIdentities()
     {
-        return [self::CACHE_TAG . '_' . $this->getId()];
+        return;
     }
 
     /**
@@ -91,7 +67,6 @@ class Post extends \Magento\Framework\Model\AbstractModel
     public function getDefaultValues()
     {
         $values = [];
-
         return $values;
     }
 }

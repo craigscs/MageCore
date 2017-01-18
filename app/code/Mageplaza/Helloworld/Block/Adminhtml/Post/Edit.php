@@ -48,7 +48,7 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
      */
     protected function _construct()
     {
-        $this->_objectId = 'post_id';
+        $this->_objectId = 'profile_id';
         $this->_blockGroup = 'Mageplaza_HelloWorld';
         $this->_controller = 'adminhtml_post';
         parent::_construct();
@@ -79,7 +79,7 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
     public function getHeaderText()
     {
         /** @var \Mageplaza\HelloWorld\Model\Post $post */
-        $post = $this->_coreRegistry->registry('mageplaza_helloworld_post');
+        $post = $this->_coreRegistry->registry('integrationui_profile');
         if ($post->getId()) {
             return __("Edit Post '%1'", $this->escapeHtml($post->getName()));
         }

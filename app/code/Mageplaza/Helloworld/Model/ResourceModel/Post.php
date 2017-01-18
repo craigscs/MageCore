@@ -47,7 +47,7 @@ class Post extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
      */
     protected function _construct()
     {
-        $this->_init('mageplaza_helloworld_post', 'post_id');
+        $this->_init('integrationui_profile', 'profile_id');
     }
 
     /**
@@ -61,8 +61,8 @@ class Post extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         $adapter = $this->getConnection();
         $select = $adapter->select()
             ->from($this->getMainTable(), 'name')
-            ->where('post_id = :post_id');
-        $binds = ['post_id' => (int)$id];
+            ->where('profile_id = :profile_id');
+        $binds = ['profile_id' => (int)$id];
         return $adapter->fetchOne($select, $binds);
     }
     /**

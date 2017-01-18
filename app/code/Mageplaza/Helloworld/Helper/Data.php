@@ -33,18 +33,6 @@ class Data extends AbstractHelper
         );
     }
 
-    public function getProcessOptionArray()
-    {
-        $processes = Mage::getConfig()->getNode('global/integrationui_processes')->asArray();
-        $result = array();
-
-        foreach ($processes as $code => $process) {
-            $result[$code] = $process['label'];
-        }
-
-        return $result;
-    }
-
 
     public function getGeneralConfig($code, $storeId = null)
     {
