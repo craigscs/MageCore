@@ -18,8 +18,6 @@ class Save extends \Magento\Catalog\Controller\Adminhtml\Product\save
             $this->highlight = '';
         }
 
-        var_dump($this->highlight);
-
         $storeId = $this->getRequest()->getParam('store', 0);
         $store = $this->getStoreManager()->getStore($storeId);
         $this->getStoreManager()->setCurrentStore($store->getCode());

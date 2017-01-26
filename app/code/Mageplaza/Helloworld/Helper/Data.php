@@ -33,6 +33,71 @@ class Data extends AbstractHelper
         );
     }
 
+    public function makeStorableArrayFieldValue($value,$update = false,$prefix = false)
+    {
+        if ($this->_isEncodedArrayFieldValue($value)) {
+            $value = $this->_decodeArrayFieldValue($value,$update,$prefix);
+        }
+        $value = $this->_serializeValue($value);
+        return $value;
+    }
+
+    protected function _isEncodedArrayFieldValue($value)
+    {
+        if (!is_array($value)) {
+            return false;
+        }
+        unset($value['__empty']);
+        foreach ($value as $_id => $row) {
+            if (!is_array($row) || !array_key_exists('db_field', $row) || !array_key_exists('file_field', $row)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    protected function _serializeValue($value)
+    {
+        if (is_numeric($value)) {
+            $data = (float)$value;
+            return (string)$data;
+        } else if (is_array($value)) {
+            $data = array();
+            foreach ($value as $groupId => $qty) {
+                if (!array_key_exists($groupId, $data)) {
+                    $data[$groupId] = $qty;
+                }
+            }
+            if (count($data) == 1 && array_key_exists(\Magento\Customer\Model\Group::CUST_GROUP_ALL, $data)) {
+                return (string)$data[\Magento\Customer\Model\Group::CUST_GROUP_ALL];
+            }
+            return serialize($data);
+        } else {
+            return '';
+        }
+    }
+
+    protected function _decodeArrayFieldValue(array $value,$update,$prefix)
+    {
+        $result = array();
+        unset($value['__empty']);
+        foreach ($value as $_id => $row) {
+            if (!is_array($row) || !array_key_exists('db_field', $row) || !array_key_exists('file_field', $row)) {
+                continue;
+            }
+            $groupId = $row['db_field'];
+            $qty = $row['file_field'];
+            if ($update){
+                $qty = $row['new'];
+            }
+            if ($prefix){
+                $qty = $row['prefix'];
+            }
+            $result[$groupId] = $qty;
+        }
+        return $result;
+    }
+
 
     public function getGeneralConfig($code, $storeId = null)
     {

@@ -81,9 +81,7 @@ class Edit extends \Mageplaza\HelloWorld\Controller\Adminhtml\Post
     public function execute()
     {
         $id = $this->getRequest()->getParam('post_id');
-        /** @var \Mageplaza\HelloWorld\Model\Post $post */
         $post = $this->_initPost();
-        /** @var \Magento\Backend\Model\View\Result\Page|\Magento\Framework\View\Result\Page $resultPage */
         $resultPage = $this->_resultPageFactory->create();
         $resultPage->setActiveMenu('Mageplaza_HelloWorld::post');
         $resultPage->getConfig()->getTitle()->set(__('Profiles'));
@@ -104,7 +102,7 @@ class Edit extends \Mageplaza\HelloWorld\Controller\Adminhtml\Post
         }
         $title = $post->getId() ? $post->getName() : __('New Profile');
         $resultPage->getConfig()->getTitle()->prepend($title);
-        $data = $this->_backendSession->getData('mageplaza_helloworld_post_data', true);
+        $data = $this->_backendSession->getData('mageplaza_hello_world_post_data', true);
         if (!empty($data)) {
             $post->setData($data);
         }

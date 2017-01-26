@@ -23,8 +23,9 @@
  * @copyright   Copyright (c) 2009-2013 Vaimo AB
  * @author      Urmo Schmidt
  */
+namespace Vaimo\IntegrationBase\Model\Import;
 
-class Vaimo_IntegrationBase_Model_Import_Product extends Vaimo_IntegrationBase_Model_Import_Abstract
+class Product extends \Vaimo\IntegrationBase\Model\Import\Abst
 {
     protected $_productModel;
     protected $_eventPrefix = 'product';

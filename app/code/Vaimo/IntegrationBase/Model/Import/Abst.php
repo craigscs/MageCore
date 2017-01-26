@@ -23,8 +23,9 @@
  * @copyright   Copyright (c) 2009-2013 Vaimo AB
  * @author      Urmo Schmidt
  */
+namespace Vaimo\IntegrationBase\Model\Import;
 
-abstract class Vaimo_IntegrationBase_Model_Import_Abstract extends \Magento\Framework\DataObject
+abstract class Abst extends \Magento\Framework\DataObject
 {
     protected $_type;
     protected $_eventPrefix = 'abstract';
@@ -41,6 +42,13 @@ abstract class Vaimo_IntegrationBase_Model_Import_Abstract extends \Magento\Fram
 
     abstract protected function _importRecord($item);
     abstract protected function _deleteRecord($item);
+
+    protected $object_manager;
+
+    public function setObjectManager($object_manager)
+    {
+    $this->object_manager = $object_manager;
+    }
 
     protected function _init($type, $name)
     {
@@ -59,21 +67,16 @@ abstract class Vaimo_IntegrationBase_Model_Import_Abstract extends \Magento\Fram
     {
         if (!$this->_collection) {
             $statuses = array(
-                Vaimo_IntegrationBase_Helper_Data::ROW_STATUS_IMPORT,
-                Vaimo_IntegrationBase_Helper_Data::ROW_STATUS_DELETE,
+                1,
+                2,
             );
 
-            /** @var $collection Mage_Core_Model_Resource_Db_Collection_Abstract */
-            $collection = Mage::getModel($this->_type)
-                ->getCollection()
-                ->addFieldToFilter('row_status', array('in' => $statuses));
-
-            if ($this->_limit) {
-                $collection->getSelect()->limit($this->_limit);
-            }
+            $productCollection = $this->object_manager->create('Magento\Catalog\Model\ResourceModel\Product\Collection');
+            $productCollection->load();
 
             // Allow project specific customizations to collection loading
-            Mage::dispatchEvent($this->_eventPrefix . '_integrationbase_import_collection_prepare', array('collection' => $collection));
+//            $event = $this->object_manager->create('Vaimo\IntegrationBase\Import')
+//            Mage::dispatchEvent($this->_eventPrefix . '_integrationbase_import_collection_prepare', array('collection' => $collection));
 
             $this->_collection = $collection;
         }
@@ -83,7 +86,7 @@ abstract class Vaimo_IntegrationBase_Model_Import_Abstract extends \Magento\Fram
 
     protected function _log($message)
     {
-        Mage::log($message, null, $this->_logFile, true);
+//        Mage::log($message, null, $this->_logFile, true);
         echo $message . "\n";
         flush();
         @ob_flush();
@@ -125,12 +128,12 @@ abstract class Vaimo_IntegrationBase_Model_Import_Abstract extends \Magento\Fram
 
     final public function import($limit = 0, $operationId = 0)
     {
-        Mage::log("General Import Started", null, "VaimoProductImport.log");
+//        Mage::log("General Import Started", null, "VaimoProductImport.log");
         $this->_limit = $limit;
-        $this->_log($this->_name . ' started');
+//        $this->_log($this->_name . ' started');
 
         if ($this->_limit) {
-            $this->_log($this->helper()->__('Maximum number of records to be processed: %d', $this->_limit));
+//            $this->_log($this->helper()->__('Maximum number of records to be processed: %d', $this->_limit));
         }
 
         $logged = false;
@@ -193,30 +196,30 @@ abstract class Vaimo_IntegrationBase_Model_Import_Abstract extends \Magento\Fram
 
     final public function run($limit = 0, $operationId)
     {
-        try {
-            $this->import($limit, $operationId);
-
-            if ($this->_successCount == 0 && $this->_failureCount == 0) {
-                $this->_log(Icommerce_Utils::getTriggerResultXml(Icommerce_Utils::TRIGGER_STATUS_NOTHING_TO_DO, ''));
-            } elseif ($this->_successCount > 0 && $this->_failureCount > 0) {
-                $this->_log(Icommerce_Utils::getTriggerResultXml(
-                    Icommerce_Utils::TRIGGER_STATUS_EXCEPTIONS,
-                    $this->helper()->__($this->_successMessage, $this->_successCount)
-                        . ', ' . $this->helper()->__($this->_failureMessage, $this->_failureCount)
-                ));
-            } elseif ($this->_successCount > 0) {
-                $this->_log(Icommerce_Utils::getTriggerResultXml(
-                    Icommerce_Utils::TRIGGER_STATUS_SUCCEEDED,
-                    $this->helper()->__($this->_successMessage, $this->_successCount)
-                ));
-            } else {
-                $this->_log(Icommerce_Utils::getTriggerResultXml(
-                    Icommerce_Utils::TRIGGER_STATUS_FAILED,
-                    $this->helper()->__($this->_failureMessage, $this->_failureCount)
-                ));
-            }
-        } catch (Exception $e) {
-            $this->_log(Icommerce_Utils::getTriggerResultXml(Icommerce_Utils::TRIGGER_STATUS_FAILED, $e->getMessage()));
-        }
+//        try {
+//            $this->import($limit, $operationId);
+//
+//            if ($this->_successCount == 0 && $this->_failureCount == 0) {
+//                $this->_log(\Icommerce_Utils::getTriggerResultXml(\Icommerce_Utils::TRIGGER_STATUS_NOTHING_TO_DO, ''));
+//            } elseif ($this->_successCount > 0 && $this->_failureCount > 0) {
+//                $this->_log(\Icommerce_Utils::getTriggerResultXml(
+//                    \Icommerce_Utils::TRIGGER_STATUS_EXCEPTIONS,
+//                    $this->helper()->__($this->_successMessage, $this->_successCount)
+//                        . ', ' . $this->helper()->__($this->_failureMessage, $this->_failureCount)
+//                ));
+//            } elseif ($this->_successCount > 0) {
+//                $this->_log(\Icommerce_Utils::getTriggerResultXml(
+//                    \Icommerce_Utils::TRIGGER_STATUS_SUCCEEDED,
+//                    $this->helper()->__($this->_successMessage, $this->_successCount)
+//                ));
+//            } else {
+//                $this->_log(\Icommerce_Utils::getTriggerResultXml(
+//                    \Icommerce_Utils::TRIGGER_STATUS_FAILED,
+//                    $this->helper()->__($this->_failureMessage, $this->_failureCount)
+//                ));
+//            }
+//        } catch (\Exception $e) {
+//            $this->_log(\Icommerce_Utils::getTriggerResultXml(\Icommerce_Utils::TRIGGER_STATUS_FAILED, $e->getMessage()));
+//        }
     }
 }

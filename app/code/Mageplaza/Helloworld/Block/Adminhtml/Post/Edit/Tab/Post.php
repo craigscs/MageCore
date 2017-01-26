@@ -47,6 +47,7 @@ class Post extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
 
     protected $context;
     protected $objectManager;
+    protected $helper;
 
     /**
      * constructor
@@ -71,28 +72,12 @@ class Post extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
         array $data = []
     )
     {
-        $this->_wysiwygConfig            = $wysiwygConfig;
-        $this->_countryOptions           = $countryOptions;
-        $this->_booleanOptions           = $booleanOptions;
+        $this->_wysiwygConfig = $wysiwygConfig;
+        $this->_countryOptions = $countryOptions;
+        $this->_booleanOptions = $booleanOptions;
         $this->_sampleMultiselectOptions = $sampleMultiselectOptions;
         $this->context = $context;
         parent::__construct($context, $registry, $formFactory, $data);
-
-        $form = $this->_formFactory->create();
-        $curlInfo = $form->addFieldset(
-            'curl_info',
-            [
-                'legend' => __('Curl Information'),
-                'class'  => 'fieldset-wide'
-            ]
-        );
-        $field = $curlInfo->addField('curl_info[general]', 'text', array(
-            'name'      => 'curl_info[general]',
-            'label'     => __('CURL Information'),
-            'comment'   => '<b>Option:</b> CURLOPT_URL</br><b>Value:</b> https://www.example.com/',
-        ));
-        $fieldRenderer = $this->getLayout()->createBlock('\Mageplaza\HelloWorld\Block\Adminhtml\Form\Field\Curllist',"", array($context));
-        $field->setRenderer($fieldRenderer);
     }
 
     /**
@@ -118,9 +103,9 @@ class Post extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
         $fieldset->addType('file', 'Mageplaza\HelloWorld\Block\Adminhtml\Post\Helper\File');
         if ($post->getId()) {
             $fieldset->addField(
-                'post_id',
+                'profile_id',
                 'hidden',
-                ['name' => 'post_id']
+                ['name' => 'profile_id']
             );
         }
         $fieldset->addField(
@@ -237,11 +222,13 @@ class Post extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
             'name'      => 'soap_info[method]',
             'label'     => __('Method'),
         ));
-
-        $soapInfo = $soapInfo->addField('soap_info[parameters]', 'text', array(
+        $field = $soapInfo->addField('soap_info[parameters]', 'text', array(
             'name'      => 'soap_info[parameters]',
-            'label'     => ('Parameters'),
+            'label'     => __('Parameters'),
         ));
+
+        $fieldRenderer = $this->getLayout()->createBlock('\Mageplaza\HelloWorld\Block\Adminhtml\Form\Field\Soap', "", array($this->context));
+        $field->setRenderer($fieldRenderer);
 
         $defaultValues = $form->addFieldset('default_values_form', array('legend' => __('Default Values')));
 
@@ -253,29 +240,30 @@ class Post extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
         $fieldRenderer = $this->getLayout()->createBlock('\Mageplaza\HelloWorld\Block\Adminhtml\Form\Field\Defaultvalues', "", array($this->context));
         $field->setRenderer($fieldRenderer);
 
-        $fieldMapping = $form->addFieldset('field_mapping_form', array('legend' => __('Field Mapping')));
+        $defaultValues = $form->addFieldset('field_mapping_form', array('legend' => __('Field Mapping')));
 
-        $fieldMapping->addField('field_mapping', 'text', array(
+        $field = $defaultValues->addField('field_mapping', 'text', array(
             'name'      => 'field_mapping',
             'label'     => __('Field Mapping'),
         ));
+
         $fieldRenderer = $this->getLayout()->createBlock('\Mageplaza\HelloWorld\Block\Adminhtml\Form\Field\Fieldmapping', "", array($this->context));
-        $fieldMapping->setRenderer($fieldRenderer);
+        $field->setRenderer($fieldRenderer);
 
         $order = $form->addFieldset('order', array('legend' => __('Order Export')));
 
-//        $order->addField('status', 'select', array(
-//            'name'      => 'status',
-//            'label'     => __('Export Status'),
-//            'required'  => false,
-//            'values'   => Mage::helper('integrationui')->getOrderStatusList(),
-//        ));
-//
+        $order->addField('status', 'select', array(
+            'name'      => 'status',
+            'label'     => __('Export Status'),
+            'required'  => false,
+            'values'   => array(),
+        ));
+
         $order->addField('status_after', 'select', array(
             'name'      => 'status_after',
             'label'     => __('Status After Export'),
             'required'  => false,
-//            'values'   => Mage::helper('integrationui')->getOrderStatusList(),
+            'values'   => array(),
         ));
 
 
@@ -299,7 +287,7 @@ class Post extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
      */
     public function getTabLabel()
     {
-        return __('Post');
+        return __('Profile');
     }
 
     /**

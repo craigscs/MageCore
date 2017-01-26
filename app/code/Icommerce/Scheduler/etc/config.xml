@@ -1,0 +1,103 @@
+<?xml version="1.0" ?>
+<!--
+ * Copyright (c) 2009-2013 Vaimo AB
+ *
+ * Vaimo reserves all rights in the Program as delivered. The Program
+ * or any portion thereof may not be reproduced in any form whatsoever without
+ * the written consent of Vaimo, except as provided by licence. A licence
+ * under Vaimo's rights in the Program may be available directly from
+ * Vaimo.
+ *
+ * Disclaimer:
+ * THIS NOTICE MAY NOT BE REMOVED FROM THE PROGRAM BY ANY USER THEREOF.
+ * THE PROGRAM IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE PROGRAM OR THE USE OR OTHER DEALINGS
+ * IN THE PROGRAM.
+ *
+ * @category    Vaimo
+ * @package     Icommerce_Scheduler
+ * @copyright   Copyright (c) 2009-2012 Vaimo AB
+ * @author      Urmo Schmidt
+-->
+<config>
+    <!--<modules>-->
+        <!--<Icommerce_Scheduler>-->
+            <!--<version>0.2.0</version>-->
+        <!--</Icommerce_Scheduler>-->
+    <!--</modules>-->
+    <!--<global>-->
+        <!--<models>-->
+            <!--<scheduler>-->
+                <!--<class>Icommerce_Scheduler_Model</class>-->
+                <!--<resourceModel>scheduler_resource</resourceModel>-->
+            <!--</scheduler>-->
+            <!--<scheduler_resource>-->
+                <!--<class>Icommerce_Scheduler_Model_Resource</class>-->
+                <!--<entities>-->
+                    <!--<operation>-->
+                        <!--<table>icommerce_scheduler_operation</table>-->
+                    <!--</operation>-->
+                    <!--<history>-->
+                        <!--<table>icommerce_scheduler_history</table>-->
+                    <!--</history>-->
+                    <!--<message>-->
+                        <!--<table>icommerce_scheduler_message</table>-->
+                    <!--</message>-->
+                <!--</entities>-->
+            <!--</scheduler_resource>-->
+        <!--</models>-->
+        <!--<blocks>-->
+            <!--<scheduler>-->
+                <!--<class>Icommerce_Scheduler_Block</class>-->
+            <!--</scheduler>-->
+        <!--</blocks>-->
+        <!--<helpers>-->
+            <!--<scheduler>-->
+                <!--<class>Icommerce_Scheduler_Helper</class>-->
+            <!--</scheduler>-->
+        <!--</helpers>-->
+        <!--<resources>-->
+            <!--<scheduler_setup>-->
+                <!--<setup>-->
+                    <!--<module>Icommerce_Scheduler</module>-->
+                    <!--<class>Mage_Eav_Model_Entity_Setup</class>-->
+                <!--</setup>-->
+              <!--</scheduler_setup>-->
+        <!--</resources>-->
+        <!--<template>-->
+            <!--<email>-->
+                <!--<scheduler_email_template module="scheduler" translate="label">-->
+                    <!--<label>Scheduler</label>-->
+                    <!--<file>scheduler.html</file>-->
+                    <!--<type>html</type>-->
+                <!--</scheduler_email_template>-->
+            <!--</email>-->
+        <!--</template>-->
+    <!--</global>-->
+    <!--<admin>-->
+        <!--<routers>-->
+            <!--<adminhtml>-->
+                <!--<args>-->
+                    <!--<modules>-->
+                        <!--<scheduler before="Mage_Adminhtml">Icommerce_Scheduler_Adminhtml</scheduler>-->
+                    <!--</modules>-->
+                <!--</args>-->
+            <!--</adminhtml>-->
+        <!--</routers>-->
+    <!--</admin>-->
+    <!--<default>-->
+        <!--<scheduler>-->
+            <!--<settings>-->
+                <!--&lt;!&ndash; If this has a value, this will be used to run scheduler tasks instead of baseUrl &ndash;&gt;-->
+                <!--<custom_base_url/>-->
+            <!--</settings>-->
+            <!--<email>-->
+                <!--<email_template>scheduler_email_template</email_template>-->
+            <!--</email>-->
+        <!--</scheduler>-->
+    <!--</default>-->
+</config>

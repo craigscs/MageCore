@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!--<config>-->
+    <!--<menu>-->
+        <!--<icommerce module="scheduler" translate="title">-->
+       		<!--<title>Vaimo</title>-->
+       		<!--<sort_order>999</sort_order>-->
+            <!--<children>-->
+                <!--<scheduler module="scheduler" translate="title">-->
+                    <!--<title>Scheduler</title>-->
+                    <!--<sort_order>100</sort_order>-->
+                    <!--<children>-->
+                        <!--<operations>-->
+                            <!--<title>Tasks</title>-->
+                            <!--<sort_order>10</sort_order>-->
+                            <!--<action>adminhtml/scheduler_operation</action>-->
+                        <!--</operations>-->
+                        <!--<messages>-->
+                            <!--<title>Messages</title>-->
+                            <!--<sort_order>20</sort_order>-->
+                            <!--<action>adminhtml/scheduler_message</action>-->
+                        <!--</messages>-->
+                    <!--</children>-->
+                <!--</scheduler>-->
+            <!--</children>-->
+        <!--</icommerce>-->
+    <!--</menu>-->
+    <!--<acl>-->
+        <!--<resources>-->
+            <!--<admin>-->
+                <!--<children>-->
+                    <!--<icommerce>-->
+                        <!--<title>Vaimo</title>-->
+                        <!--<sort_order>999</sort_order>-->
+                        <!--<children>-->
+                            <!--<scheduler>-->
+                                <!--<title>Scheduler</title>-->
+                                <!--<sort_order>100</sort_order>-->
+                                <!--<children>-->
+                                    <!--<operations>-->
+                                        <!--<title>Tasks</title>-->
+                                        <!--<sort_order>10</sort_order>-->
+                                        <!--<children>-->
+                                            <!--<actions translate="title">-->
+                                                <!--<title>Actions</title>-->
+                                                <!--<children>-->
+                                                    <!--<new translate="title">-->
+                                                        <!--<title>Add</title>-->
+                                                        <!--<sort_order>10</sort_order>-->
+                                                    <!--</new>-->
+                                                    <!--<edit translate="title">-->
+                                                        <!--<title>View</title>-->
+                                                        <!--<sort_order>20</sort_order>-->
+                                                    <!--</edit>-->
+                                                    <!--<save translate="title">-->
+                                                        <!--<title>Save</title>-->
+                                                        <!--<sort_order>30</sort_order>-->
+                                                    <!--</save>-->
+                                                    <!--<delete translate="title">-->
+                                                        <!--<title>Delete</title>-->
+                                                        <!--<sort_order>40</sort_order>-->
+                                                    <!--</delete>-->
+                                                    <!--<run translate="title">-->
+                                                        <!--<title>Run</title>-->
+                                                        <!--<sort_order>50</sort_order>-->
+                                                    <!--</run>-->
+                                                <!--</children>-->
+                                            <!--</actions>-->
+                                        <!--</children>-->
+                                    <!--</operations>-->
+                                    <!--<messages>-->
+                                        <!--<title>Messages</title>-->
+                                        <!--<sort_order>20</sort_order>-->
+                                    <!--</messages>-->
+                                <!--</children>-->
+                            <!--</scheduler>-->
+                        <!--</children>-->
+                    <!--</icommerce>-->
+                    <!--<system>-->
+                        <!--<children>-->
+                            <!--<config>-->
+                                <!--<children>-->
+                                    <!--<scheduler translate="title" module="scheduler">-->
+                                        <!--<title>Scheduler</title>-->
+                                    <!--</scheduler>-->
+                                <!--</children>-->
+                            <!--</config>-->
+                        <!--</children>-->
+                    <!--</system>-->
+                <!--</children>-->
+            <!--</admin>-->
+        <!--</resources>-->
+    <!--</acl>-->
+<!--</config>-->

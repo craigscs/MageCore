@@ -45,6 +45,7 @@ class Save extends \Mageplaza\HelloWorld\Controller\Adminhtml\Post
      */
     protected $_backendSession;
 
+    protected $helper;
     /**
      * constructor
      * 
@@ -72,6 +73,7 @@ class Save extends \Mageplaza\HelloWorld\Controller\Adminhtml\Post
         $this->_fileModel      = $fileModel;
         $this->_imageModel     = $imageModel;
         $this->_backendSession = $backendSession;
+        $this->helper = $context->getObjectManager()->create('Mageplaza\HelloWorld\Helper\Data');
         parent::__construct($postFactory, $registry, $resultRedirectFactory, $context);
     }
 
@@ -83,12 +85,44 @@ class Save extends \Mageplaza\HelloWorld\Controller\Adminhtml\Post
     public function execute()
     {
         $data = $this->getRequest()->getPost('post');
-        var_dump($data); die();
         $resultRedirect = $this->resultRedirectFactory->create();
         if ($data) {
             $data = $this->_filterData($data);
             $post = $this->_initPost();
             $post->setData($data);
+
+            $curlInfo = $data['curl_info'];
+            $curlInfo = $this->helper->makeStorableArrayFieldValue($curlInfo);
+            $post->setCurlInfo($curlInfo);
+
+            $fileInfo = $data['file_info'];
+            $fileInfo = $this->helper->makeStorableArrayFieldValue($fileInfo);
+            $post->setFileInfo($fileInfo);
+
+            $soapInfo = $data['soap_info'];
+            $soapInfo = $this->helper->makeStorableArrayFieldValue($soapInfo);
+            $post->setSoapInfo($soapInfo);
+
+            $defaultValues = $data['default_values'];
+            $defaultValues = $this->helper->makeStorableArrayFieldValue($defaultValues);
+            $post->setDefaultValues($defaultValues);
+
+            $fm = $data['field_mapping'];
+            $fm = $this->helper->makeStorableArrayFieldValue($fm);
+            $post->setFieldMapping($fm);
+
+            $prefix = $data['field_mapping'];
+            $prefix = $this->helper->makeStorableArrayFieldValue($prefix, false, true);
+            $post->setPrefix($prefix);
+
+            $updateMapping = $this->helper->makeStorableArrayFieldValue($fm,true);
+            $post->setUpdateMapping($updateMapping);
+
+//            var_dump($post); die();
+            if ($this->getRequest()->getParam('id') != '') {
+                $post->setProfileId($this->getRequest()->getParam('id'));
+            }
+
             $this->_eventManager->dispatch(
                 'mageplaza_helloworld_post_prepare_save',
                 [

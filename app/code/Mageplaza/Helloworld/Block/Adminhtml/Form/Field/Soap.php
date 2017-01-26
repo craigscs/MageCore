@@ -24,7 +24,7 @@
  * @author      Raivo Balins
  */
 
-namespace Vaimo\IntegrationUI\Block\Adminhtml\Form\Field;
+namespace Mageplaza\HelloWorld\Block\Adminhtml\Form\Field;
 
 class Soap extends \Magento\Config\Block\System\Config\Form\Field\FieldArray\AbstractFieldArray
 {
@@ -39,7 +39,7 @@ class Soap extends \Magento\Config\Block\System\Config\Form\Field\FieldArray\Abs
     {
         if (!$this->_dbFieldRenderer) {
             $this->_dbFieldRenderer = $this->getLayout()->createBlock(
-                'integrationui/adminhtml_form_field_curlfield', '',
+                'Mageplaza\Helloworld\Block\Adminhtml\Form\Field\Curlfield', '',
                 array('is_render_to_js_template' => true)
             );
             $this->_dbFieldRenderer->setExtraParams('style="width:300px"');
@@ -53,16 +53,16 @@ class Soap extends \Magento\Config\Block\System\Config\Form\Field\FieldArray\Abs
     protected function _prepareToRender()
     {
         $this->addColumn('db_field', array(
-            'label' => Mage::helper('integrationui')->__('Parameter'),
+            'label' => __('Parameter'),
             //'renderer' => $this->_getDbFieldRenderer(),
             'style' => 'width:200px',
         ));
         $this->addColumn('file_field', array(
-            'label' => Mage::helper('integrationui')->__('Value'),
+            'label' => __('Value'),
             'style' => 'width:200px',
         ));
         $this->_addAfter = false;
-        $this->_addButtonLabel = Mage::helper('integrationui')->__('Add Parameter');
+        $this->_addButtonLabel = __('Add Parameter');
     }
 
     /**

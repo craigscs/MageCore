@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="icommerce" translate="label" sortOrder="10">
+            <label>Admin - Order</label>
+        </tab>
+        <!--<section id="integrationbase" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">-->
+            <!--<class>separator-top</class>-->
+            <!--<label>Integration Base</label>-->
+            <!--<tab>vaimo</tab>-->
+            <!--<resource>Vaimo_IntegrationBase::config</resource>-->
+            <!--<group id="export_queue" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">-->
+                <!--<label>Export Queue</label>-->
+                <!--<field id="integrationbase_customer" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">-->
+                    <!--<label>Customers</label>-->
+                    <!--<source_model>Vaimo\IntegrationBase\Model\System\Config\Source\Queue\Add\DefaulValue</source_model>-->
+                <!--</field>-->
+                <!--<field id="integrationbase_order" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">-->
+                    <!--<label>Orders</label>-->
+                    <!--<source_model>Vaimo\IntegrationBase\Model\System\Config\Source\Queue\Add\DefaulValue</source_model>-->
+                <!--</field>-->
+                <!--<field id="integrationbase_invoice" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">-->
+                    <!--<label>Invoices</label>-->
+                    <!--<source_model>Vaimo\IntegrationBase\Model\System\Config\Source\Queue\Add\DefaulValue</source_model>-->
+                <!--</field>-->
+                <!--<field id="integrationbase_shipment" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">-->
+                    <!--<label>Shipments</label>-->
+                    <!--<source_model>Vaimo\IntegrationBase\Model\System\Config\Source\Queue\Add\DefaulValue</source_model>-->
+                <!--</field>-->
+                <!--<field id="integrationbase_creditmemo" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">-->
+                    <!--<label>Credit Memos</label>-->
+                    <!--<source_model>Vaimo\IntegrationBase\Model\System\Config\Source\Queue\Add\DefaulValue</source_model>-->
+                <!--</field>-->
+                <!--<field id="integrationbase_payment" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">-->
+                    <!--<label>Payments</label>-->
+                    <!--<source_model>Vaimo\IntegrationBase\Model\System\Config\Source\Queue\Add\DefaulValue</source_model>-->
+                <!--</field>-->
+            <!--</group>-->
+            <!--<group id="apply_rules" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">-->
+                <!--<label>Apply Rules</label>-->
+                <!--<field id="integrationbase_applyto" translate="label" type="multiselect" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">-->
+                    <!--<label>Apply prices rules to</label>-->
+                    <!--<source_model>Vaimo\IntegrationBase\Model\System\Config\Applytotypes</source_model>-->
+                <!--</field>-->
+                <!--<field id="integrationbase_afterproductimport" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">-->
+                    <!--<label>Payments</label>-->
+                    <!--<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+                <!--</field>-->
+                <!--<field id="integrationbase_afterattributeimport" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">-->
+                    <!--<label>Payments</label>-->
+                    <!--<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+                <!--</field>-->
+                <!--<field id="integrationbase_afterpriceimport" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">-->
+                    <!--<label>Payments</label>-->
+                    <!--<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+                <!--</field>-->
+                <!--<field id="integrationbase_applyonzeroprice" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">-->
+                    <!--<label>Payments</label>-->
+                    <!--<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+                <!--</field>-->
+            <!--</group>-->
+        <!--</section>-->
+    </system>
+</config>
