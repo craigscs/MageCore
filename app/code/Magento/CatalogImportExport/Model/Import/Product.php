@@ -2077,6 +2077,10 @@ class Product extends \Magento\ImportExport\Model\Import\Entity\AbstractEntity
                 return false;
             }
         }
+        //Fix type issues
+//        if (!isset($this->_productTypeModels[$rowData[self::COL_TYPE]])) {
+//            $rowData[self::COL_TYPE] = 'simple';
+//        }
         if (Import::BEHAVIOR_DELETE == $this->getBehavior()) {
             if (self::SCOPE_DEFAULT == $rowScope && !isset($this->_oldSku[$rowData[self::COL_SKU]])) {
                 $this->addRowError(ValidatorInterface::ERROR_SKU_NOT_FOUND_FOR_DELETE, $rowNum);
@@ -2176,17 +2180,19 @@ class Product extends \Magento\ImportExport\Model\Import\Entity\AbstractEntity
                     $this->urlKeys[$storeId][$urlPath] = $rowData[self::COL_SKU];
                     $this->rowNumbers[$storeId][$urlPath] = $rowNum;
                 } else {
-                    $message = sprintf(
-                        $this->retrieveMessageTemplate(ValidatorInterface::ERROR_DUPLICATE_URL_KEY),
-                        $urlKey,
-                        $this->urlKeys[$storeId][$urlPath]
-                    );
-                    $this->addRowError(
-                        ValidatorInterface::ERROR_DUPLICATE_URL_KEY,
-                        $rowNum,
-                        $rowData[self::COL_NAME],
-                        $message
-                    );
+                    $this->urlKeys[$storeId][$urlPath] = $rowData[self::COL_SKU]."_".rand(1,100000);
+                    $this->rowNumbers[$storeId][$urlPath] = $rowNum;
+//                    $message = sprintf(
+//                        $this->retrieveMessageTemplate(ValidatorInterface::ERROR_DUPLICATE_URL_KEY),
+//                        $urlKey,
+//                        $this->urlKeys[$storeId][$urlPath]
+//                    );
+//                    $this->addRowError(
+//                        ValidatorInterface::ERROR_DUPLICATE_URL_KEY,
+//                        $rowNum,
+//                        $rowData[self::COL_NAME],
+//                        $message
+//                    );
                 }
             }
         }
