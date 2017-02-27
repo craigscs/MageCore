@@ -3,7 +3,6 @@
 <?php
 $tech = $this->getProduct()->getData('tech_specs');
 $info = json_decode($tech, true);
-var_dump($info);
 $count = 0;
 ?>
 
@@ -23,6 +22,7 @@ $count = 0;
 <div id="headers_container">
     <?php if (!is_null($info)) : ?>
     <?php foreach ($info as $header) : ?>
+<!--            --><?php //continue; ?>
         <?php $speccount = 0 ?>
     <div class="header_div" id="header_div_<?= $count ?>">
         <h3 id="header_title_<?= $count++ ?>">

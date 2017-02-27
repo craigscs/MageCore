@@ -227,7 +227,6 @@ class Processor
                 }
             }
         }
-
         $product->setData($attrCode, $mediaGalleryData);
         return $this;
     }

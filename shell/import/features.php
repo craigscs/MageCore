@@ -17,9 +17,8 @@ $file2 =fopen('shell/import/links.csv', 'r');
 $links = array();
 while (($rowData = fgetcsv($file2, 4096)) !== false)
 {
-    $links[$rowData[2]] = $rowData[0];
+    $links[$rowData[3]] = $rowData[2];
 }
-var_dump($links); die();
 while (($rowData = fgetcsv($file, 4096)) !== false)
 {
     if ($c ==0) {
@@ -39,8 +38,12 @@ foreach ($productData as $sku => $value) {
     if (isset($links[$sku])) {
         $sku = $links[$sku];
     }
-    $p = $pr->get($sku);
-    $p->setData('features', json_encode($value));
-    $p->getResource()->saveAttribute($p, 'features');
-    echo "SKU ".$sku." saved.";
+    try {
+        $p = $pr->get($sku);
+        $p->setData('features', json_encode($value));
+        $p->getResource()->saveAttribute($p, 'features');
+        printf("SKU " . $sku . " saved.\n");
+    } catch (\Exception $e) {
+        printf($e->getMessage()."\n");
+    }
 }

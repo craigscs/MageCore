@@ -12,7 +12,13 @@ $state->setAreaCode('adminhtml');
 $pr = $obj->create('Magento\Catalog\Model\ProductRepository');
 $file = fopen('shell/import/overview.csv', 'r');
 $c = 0;
-while (($rowData = fgetcsv($file, 4096)) !== false)
+$file2 =fopen('shell/import/links.csv', 'r');
+$links = array();
+while (($rowData = fgetcsv($file2, 4096)) !== false)
+{
+    $links[$rowData[3]] = $rowData[2];
+}
+while (($row = fgetcsv($file, 4096)) !== false)
 {
     if ($c ==0) {
         $c++;
@@ -30,10 +36,17 @@ while (($rowData = fgetcsv($file, 4096)) !== false)
 }
 fclose($file);
 foreach ($productData as $sku => $value) {
-    $p = $pr->get($sku);
-    $product->setData("description", $overviewData['overview']);
-    $product->setData("overview_note", $overviewData['overview_note']);
-    $p->getResource()->saveAttribute($p, 'description');
-    $p->getResource()->saveAttribute($p, 'overview_note');
-    echo "SKU ".$sku." saved.";
+    if (isset($links[$sku])) {
+        $sku = $links[$sku];
+    }
+    try {
+        $p = $pr->get($sku);
+        $p->setData('description', $value['overview']);
+        $p->setData('overview_note', $value['overview_note']);
+        $p->getResource()->saveAttribute($p, 'description');
+        $p->getResource()->saveAttribute($p, 'overview_note');
+        printf("SKU " . $sku . " saved.\n");
+    } catch (\Exception $e) {
+        printf($e->getMessage()."\n");
+    }
 }
