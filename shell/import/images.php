@@ -72,6 +72,11 @@ foreach ($productData as $sku => $value) {
         }
         $p->save();
         printf("Saved sku: ".$sku."\n");
+        $files = glob('pub/media/imp*'); // get all file names
+        foreach($files as $file){ // iterate files
+            if(is_file($file))
+                unlink($file); // delete file
+        }
     } catch (\Exception $e) {
         printf($e->getMessage()."\n");
     }
